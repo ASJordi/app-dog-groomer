@@ -1,6 +1,8 @@
 
 package dev.asjordi;
 
+import dev.asjordi.view.ShowPets;
+
 /**
  *
  * @author Jordi <ejordi.ayala@gmail.com>
@@ -8,6 +10,8 @@ package dev.asjordi;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        ShowPets home = new ShowPets();
+        home.setVisible(true);
+        home.setLocationRelativeTo(null);
     }
 }
