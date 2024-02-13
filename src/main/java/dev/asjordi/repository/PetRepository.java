@@ -61,7 +61,7 @@ public class PetRepository implements IRepository<Pet> {
         boolean isUpdate = p.getId() != null && p.getId() > 0;
         
         if (isUpdate) sql = "UPDATE pets SET pet_name = ?, dog_breed = ?, color = ?, allergic = ?, special_attention = ?, notes = ?, id_owner = ? WHERE id = ?;";
-        else sql = "INSERT INTO pets (pet_name, dog_breed, color, allergic, special_atention, notes, id_owner) values (?, ?, ?, ?, ?, ?, ?);";
+        else sql = "INSERT INTO pets (pet_name, dog_breed, color, allergic, special_attention, notes, id_owner) values (?, ?, ?, ?, ?, ?, ?);";
         
         try (var ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, p.getPetName());

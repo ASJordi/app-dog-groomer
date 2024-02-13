@@ -17,13 +17,17 @@ public class Pet {
 
     public Pet() {}
 
-    public Pet(String petName, String dogBreed, String color, Boolean allergic, Boolean specialAttention, String notes, Owner owner) {
+    public Pet(String petName, String dogBreed, String color, Boolean allergic, Boolean specialAttention, String notes) {
         this.petName = petName;
         this.dogBreed = dogBreed;
         this.color = color;
         this.allergic = allergic;
         this.specialAttention = specialAttention;
         this.notes = notes;
+    }
+
+    public Pet(String petName, String dogBreed, String color, Boolean allergic, Boolean specialAttention, String notes, Owner owner) {
+        this(petName, dogBreed, color, allergic, specialAttention, notes);
         this.owner = owner;
     }
 

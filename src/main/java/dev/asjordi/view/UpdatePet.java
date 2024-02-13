@@ -4,19 +4,22 @@ import dev.asjordi.model.Owner;
 import dev.asjordi.model.Pet;
 import dev.asjordi.service.IService;
 import dev.asjordi.service.PetOwnerService;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Jordi <ejordi.ayala@gmail.com>
  */
-public class AddPet extends javax.swing.JFrame {
+public class UpdatePet extends javax.swing.JFrame {
 
     IService repo;
+    private Pet pet = null;
     
-    public AddPet() {
+    public UpdatePet(Integer petId) {
         this.repo = new PetOwnerService();
         initComponents();
+        loadPetData(petId);
     }
 
     @SuppressWarnings("unchecked")
@@ -49,13 +52,10 @@ public class AddPet extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
-        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Pet");
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         jpMain.setBackground(new java.awt.Color(255, 255, 255));
@@ -252,25 +252,14 @@ public class AddPet extends javax.swing.JFrame {
             }
         });
 
-        btnExit.setFont(new java.awt.Font("Montserrat SemiBold", 0, 24)); // NOI18N
-        btnExit.setForeground(new java.awt.Color(0, 0, 0));
-        btnExit.setText("Close");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                     .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(64, 64, 64))
         );
@@ -281,8 +270,6 @@ public class AddPet extends javax.swing.JFrame {
                 .addComponent(btnSave)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnClear)
-                .addGap(18, 18, 18)
-                .addComponent(btnExit)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -330,6 +317,21 @@ public class AddPet extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loadPetData(Integer id) {
+        try {
+            this.pet = repo.getPetById(id);
+            txtPetName.setText(pet.getPetName());
+            txtDogBreed.setText(pet.getDogBreed());
+            txtColor.setText(pet.getColor());
+            cbAllergic.setSelectedIndex(pet.getAllergic() ? 0 : 1);
+            cbSpecialAttention.setSelectedIndex(pet.getSpecialAttention() ? 0 : 1);
+            txtNotes.setText(pet.getNotes());
+            txtOwnerName.setText(pet.getOwner().getName());
+            txtOwnerPhone.setText(pet.getOwner().getPhone());
+            txtOwnerAddress.setText(pet.getOwner().getAddress());
+            
+        } catch (SQLException e) {}
+    }
     
     private void clear() {
         txtPetName.setText("");
@@ -362,9 +364,12 @@ public class AddPet extends javax.swing.JFrame {
                 
                 Owner o = new Owner(ownerName, ownerPhone, ownerAddress);
                 Pet p = new Pet(petName, dogBreed, color, allergic, specialAttention, notes);
+                p.setId(this.pet.getId());
+                
                 repo.addPetWithOwner(p, o);
-                JOptionPane.showMessageDialog(rootPane, "Saved", "Pet Groomer", JOptionPane.QUESTION_MESSAGE);
-                clear();
+                
+                JOptionPane.showMessageDialog(rootPane, "Updated!", "Pet Groomer", JOptionPane.QUESTION_MESSAGE);
+                this.dispose();
             } catch (Exception e) {}
             
         } else JOptionPane.showMessageDialog(rootPane, "Fill out the fields", "Pet Groomer", JOptionPane.INFORMATION_MESSAGE);
@@ -374,13 +379,8 @@ public class AddPet extends javax.swing.JFrame {
         clear();
     }//GEN-LAST:event_btnClearActionPerformed
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnExitActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
-    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbAllergic;
     private javax.swing.JComboBox<String> cbSpecialAttention;

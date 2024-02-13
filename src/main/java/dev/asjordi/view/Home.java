@@ -133,7 +133,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnShowPetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowPetsActionPerformed
-        // TODO add your handling code here:
+        ShowPets sp = new ShowPets();
+        sp.setVisible(true);
+        sp.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnShowPetsActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

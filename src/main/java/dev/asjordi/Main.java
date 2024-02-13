@@ -1,7 +1,7 @@
 
 package dev.asjordi;
 
-import dev.asjordi.view.ShowPets;
+import dev.asjordi.view.Home;
 
 /**
  *
@@ -10,7 +10,7 @@ import dev.asjordi.view.ShowPets;
 public class Main {
 
     public static void main(String[] args) {
-        ShowPets home = new ShowPets();
+        Home home = new Home();
         home.setVisible(true);
         home.setLocationRelativeTo(null);
     }
