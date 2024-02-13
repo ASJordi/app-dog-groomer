@@ -62,7 +62,7 @@ public class ShowPets extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Show Pets");
+        setTitle("Dog groomer | Pets");
         setMaximumSize(new java.awt.Dimension(1200, 800));
         setMinimumSize(new java.awt.Dimension(1200, 800));
         setResizable(false);
@@ -73,7 +73,7 @@ public class ShowPets extends javax.swing.JFrame {
         title.setForeground(new java.awt.Color(0, 0, 0));
         title.setText("Dog Groomer");
 
-        jpTable.setBackground(new java.awt.Color(255, 0, 102));
+        jpTable.setBackground(new java.awt.Color(255, 255, 255));
 
         tablePets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

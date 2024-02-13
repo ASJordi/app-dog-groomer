@@ -37,8 +37,8 @@ public class ConnectionDatabase {
     
     private static Properties getProps() {
         Properties p = new Properties();
-        p.setProperty("user", "root");
-        p.setProperty("password", "1014");
+        p.setProperty("user", "");
+        p.setProperty("password", "");
         return p;
     }
     

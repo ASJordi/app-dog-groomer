@@ -54,7 +54,7 @@ public class UpdatePet extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Add Pet");
+        setTitle("Dog groomer | Update");
         setMinimumSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
