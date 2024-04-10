@@ -37,8 +37,9 @@ public class ConnectionDatabase {
     
     private static Properties getProps() {
         Properties p = new Properties();
-        p.setProperty("user", "");
-        p.setProperty("password", "");
+        p.setProperty("user", System.getenv("user_mysql"));
+        p.setProperty("password", System.getenv("password_mysql"));
+        p.setProperty("useSSL", "true");
         return p;
     }
     
