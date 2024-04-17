@@ -4,7 +4,8 @@ import dev.asjordi.model.Owner;
 import dev.asjordi.model.Pet;
 import dev.asjordi.service.IService;
 import dev.asjordi.service.PetOwnerService;
-import java.sql.SQLException;
+import dev.asjordi.util.HibernateUtil;
+import jakarta.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,11 +14,13 @@ import javax.swing.JOptionPane;
  */
 public class UpdatePet extends javax.swing.JFrame {
 
+    private EntityManager em;
     IService repo;
     private Pet pet = null;
     
     public UpdatePet(Integer petId) {
-        this.repo = new PetOwnerService();
+        this.em = HibernateUtil.getEntityManager();
+        this.repo = new PetOwnerService(em);
         initComponents();
         loadPetData(petId);
     }
@@ -330,7 +333,7 @@ public class UpdatePet extends javax.swing.JFrame {
             txtOwnerPhone.setText(pet.getOwner().getPhone());
             txtOwnerAddress.setText(pet.getOwner().getAddress());
             
-        } catch (SQLException e) {}
+        } catch (Exception e) {}
     }
     
     private void clear() {

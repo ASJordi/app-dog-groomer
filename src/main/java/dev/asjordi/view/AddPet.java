@@ -4,6 +4,8 @@ import dev.asjordi.model.Owner;
 import dev.asjordi.model.Pet;
 import dev.asjordi.service.IService;
 import dev.asjordi.service.PetOwnerService;
+import dev.asjordi.util.HibernateUtil;
+import jakarta.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,9 +15,11 @@ import javax.swing.JOptionPane;
 public class AddPet extends javax.swing.JFrame {
 
     IService repo;
+    private EntityManager em;
     
     public AddPet() {
-        this.repo = new PetOwnerService();
+        this.em = HibernateUtil.getEntityManager();
+        this.repo = new PetOwnerService(em);
         initComponents();
     }
 

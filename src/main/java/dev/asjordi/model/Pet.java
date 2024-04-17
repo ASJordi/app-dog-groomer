@@ -1,18 +1,44 @@
 package dev.asjordi.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
 /**
  *
  * @author Jordi <ejordi.ayala@gmail.com>
  */
+@Entity
+@Table(name = "pets")
 public class Pet {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
+    @Column(name = "pet_name")
     private String petName;
+    
+    @Column(name = "dog_breed")
     private String dogBreed;
+    
     private String color;
     private Boolean allergic;
+    
+    @Column(name = "special_attention")
     private Boolean specialAttention;
+    
     private String notes;
+    
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_owner")
     private Owner owner;
 
     public Pet() {}

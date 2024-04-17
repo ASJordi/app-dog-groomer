@@ -3,6 +3,8 @@ package dev.asjordi.view;
 import dev.asjordi.model.Pet;
 import dev.asjordi.service.IService;
 import dev.asjordi.service.PetOwnerService;
+import dev.asjordi.util.HibernateUtil;
+import jakarta.persistence.EntityManager;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -16,12 +18,14 @@ import javax.swing.table.DefaultTableModel;
 public class ShowPets extends javax.swing.JFrame {
     
     private IService repo;
+    private EntityManager em;
 
     /**
      * Creates new form ShowPets
      */
     public ShowPets() {
-        this.repo = new PetOwnerService();
+        this.em = HibernateUtil.getEntityManager();
+        this.repo = new PetOwnerService(em);
         initComponents();
         loadData();
     }

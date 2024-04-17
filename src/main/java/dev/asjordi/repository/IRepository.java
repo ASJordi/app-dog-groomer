@@ -1,7 +1,5 @@
 package dev.asjordi.repository;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -10,10 +8,9 @@ import java.util.List;
  */
 public interface IRepository<T>{
     
-    void setConn(Connection conn);
-    List<T> getAll() throws SQLException;
-    T getById(Integer id) throws SQLException;
-    T add(T t) throws SQLException;
-    void delete(Integer id) throws SQLException;
+    List<T> getAll() throws Exception;
+    T getById(Integer id) throws Exception;
+    void add(T t) throws Exception;
+    void delete(Integer id) throws Exception;
 
 }
