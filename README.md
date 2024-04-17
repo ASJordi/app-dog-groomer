@@ -6,7 +6,7 @@
 
 ## About The Project :computer:
 
-Dog groomer desktop app to manage dogs and owners. It allows to add, edit and delete dogs and owners.
+Dog groomer desktop app to manage dogs and owners. It allows to add, edit and delete dogs and owners. Implement CRUD operations with JDBC and JPA using Hibernate 
 
 [![Product Name Screen Shot][product-screenshot]](https://asjordi.dev)
 
@@ -15,6 +15,7 @@ Dog groomer desktop app to manage dogs and owners. It allows to add, edit and de
 * Java SE
 * Java Swing
 * JDBC
+* JPA
 * MySQL
 
 ## Installation :gear:
